@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeadInfested Aliases</title>
+</head>
+<body>
+    <h1>DeadInfested Aliases</h1>
+    <div id="json-entry"></div>
+
+    <button onclick="displayRandomEntry()">NameGenerated</button>
+    
+    <script>
+        // Function to load and parse JSON file
+      function loadJSON(filepath, callback) {
+            var xobj = new XMLHttpRequest();
+            xobj.overrideMimeType("application/json");
+            xobj.open('GET', filepath, true);
+            xobj.onreadystatechange = function () {
+                if (xobj.readyState == 4 && xobj.status == 200) {
+                    callback(JSON.parse(xobj.responseText));
+                }
+            };
+            xobj.send(null);
+        }
+
+        // Function to get a random entry from JSON
+        function getRandomEntry(json) {
+            var keys = Object.keys(json);
+            var randomKey = keys[Math.floor(Math.random() * keys.length)];
+            return json[randomKey];
+        }
+
+	function capitalizeFirstLetter(str) {
+	    // Check if the string is not empty
+	    if (str.length > 0) {
+		// Uppercase the first letter and concatenate it with the rest of the string
+		return str.charAt(0).toUpperCase() + str.slice(1);
+	    } else {
+		// Return empty string if the input is empty
+		return '';
+	    }
+	}
+      
+        // Function to display random entry
+      function displayRandomEntry() {
+	  firsthalf = capitalizeFirstLetter(getRandomEntry(first_dict));
+	  secondhalf = capitalizeFirstLetter(getRandomEntry(second_dict));
+
+	  console.log(firsthalf+secondhalf);
+      }
+
+      first_dict = []
+      loadJSON('first_dict.json', function(data) {first_dict = data})
+      second_dict = []
+      loadJSON('second_dict.json', function(data) {second_dict = data})
+      
+      
+
+      
+        // Call displayRandomEntry when the page loads
+        displayRandomEntry();
+    </script>
+</body>
+</html>
