@@ -7,9 +7,10 @@
 </head>
 <body>
     <h1>DeadInfested Aliases</h1>
-    <div id="json-entry"></div>
 
     <button onclick="displayRandomEntry()">NameGenerated</button>
+
+    <p id="namegenerated"></p>
     
     <script>
         // Function to load and parse JSON file
@@ -48,7 +49,10 @@
 	  firsthalf = capitalizeFirstLetter(getRandomEntry(first_dict));
 	  secondhalf = capitalizeFirstLetter(getRandomEntry(second_dict));
 
-	  console.log(firsthalf+secondhalf);
+	  namegenerated=firsthalf+secondhalf
+	  //console.log(namegenerated);
+	  document.getElementById('namegenerated').innerText = namegenerated;
+
       }
 
       first_dict = []
