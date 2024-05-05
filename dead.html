@@ -9,6 +9,7 @@
     <h1>DeadInfested Aliases</h1>
 
     <button onclick="displayRandomEntry()">NameGenerated</button>
+    <button onclick="displayRandomAliteration()">AliasAliterated</button>
 
     <p id="namegenerated"></p>
     
@@ -52,9 +53,20 @@
 	  namegenerated=firsthalf+secondhalf
 	  //console.log(namegenerated);
 	  document.getElementById('namegenerated').innerText = namegenerated;
-
       }
 
+      function displayRandomAliteration() {
+	  do {
+	      firsthalf = capitalizeFirstLetter(getRandomEntry(first_dict));
+	      secondhalf = capitalizeFirstLetter(getRandomEntry(second_dict));
+	  } while (firsthalf[0] != secondhalf[0]);
+	  
+	  namegenerated=firsthalf+secondhalf
+	  //console.log(namegenerated);
+	  document.getElementById('namegenerated').innerText = namegenerated;
+      }
+
+      
       first_dict = []
       loadJSON('first_dict.json', function(data) {first_dict = data})
       second_dict = []
